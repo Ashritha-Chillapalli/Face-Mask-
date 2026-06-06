@@ -1,0 +1,193 @@
+
+<style>
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.samples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:1rem 0}
+.sample-card{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);overflow:hidden;border:0.5px solid var(--color-border-tertiary)}
+.sample-label{padding:8px 12px;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:space-between}
+.badge{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500}
+.badge-green{background:#EAF3DE;color:#27500A}
+.badge-red{background:#FCEBEB;color:#791F1F}
+.badge-amber{background:#FAEEDA;color:#633806}
+.badge-blue{background:#E6F1FB;color:#0C447C}
+.conf{font-size:11px;color:var(--color-text-tertiary);padding:0 12px 8px}
+</style>
+
+<h2 class="sr-only">Sample detection output frames from the face mask and intruder detection system</h2>
+
+<div class="samples-grid">
+
+  <div class="sample-card">
+    <svg width="100%" viewBox="0 0 200 180" role="img" aria-label="Authorized user wearing a mask — green bounding box">
+      <title>Authorized, mask detected</title>
+      <rect width="200" height="180" fill="#1a1a2e"/>
+      <ellipse cx="100" cy="72" rx="28" ry="34" fill="#d4956a"/>
+      <rect x="72" y="88" width="56" height="48" rx="4" fill="#c4855a"/>
+      <rect x="68" y="96" width="64" height="36" rx="6" fill="#2563a8" opacity="0.9"/>
+      <ellipse cx="86" cy="80" rx="6" ry="7" fill="#b8763e"/>
+      <ellipse cx="114" cy="80" rx="6" ry="7" fill="#b8763e"/>
+      <rect x="76" y="44" width="48" height="22" rx="11" fill="#3d2008"/>
+      <rect x="72" y="52" width="6" height="26" rx="3" fill="#d4956a"/>
+      <rect x="122" y="52" width="6" height="26" rx="3" fill="#d4956a"/>
+      <rect x="55" y="38" width="90" height="96" rx="6" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+      <rect x="55" y="38" width="90" height="18" rx="3" fill="#22c55e"/>
+      <text x="100" y="51" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif" font-weight="500">Harish — Authorized</text>
+      <rect x="55" y="134" width="90" height="16" rx="3" fill="#16a34a"/>
+      <text x="100" y="145" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">Mask — 97.2%</text>
+    </svg>
+    <div class="sample-label">
+      <span style="color:var(--color-text-primary)">Authorized + mask</span>
+      <span class="badge badge-green">Pass</span>
+    </div>
+    <div class="conf">Confidence: 97.2% — identity match: Harish</div>
+  </div>
+
+  <div class="sample-card">
+    <svg width="100%" viewBox="0 0 200 180" role="img" aria-label="Authorized user without a mask — amber bounding box">
+      <title>Authorized, no mask detected</title>
+      <rect width="200" height="180" fill="#0f1923"/>
+      <ellipse cx="100" cy="72" rx="30" ry="36" fill="#c8845a"/>
+      <rect x="70" y="90" width="60" height="50" rx="4" fill="#b8743a"/>
+      <ellipse cx="87" cy="80" rx="6" ry="7" fill="#a86830"/>
+      <ellipse cx="113" cy="80" rx="6" ry="7" fill="#a86830"/>
+      <ellipse cx="100" cy="90" rx="10" ry="5" fill="#c07050"/>
+      <path d="M88 98 Q100 106 112 98" fill="none" stroke="#8b4513" stroke-width="1.5"/>
+      <rect x="70" y="46" width="60" height="20" rx="10" fill="#2a1505"/>
+      <rect x="68" y="54" width="7" height="24" rx="3" fill="#c8845a"/>
+      <rect x="125" y="54" width="7" height="24" rx="3" fill="#c8845a"/>
+      <rect x="52" y="36" width="96" height="100" rx="6" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+      <rect x="52" y="36" width="96" height="18" rx="3" fill="#f59e0b"/>
+      <text x="100" y="49" text-anchor="middle" font-size="9" fill="#1c0a00" font-family="sans-serif" font-weight="500">Harish — Authorized</text>
+      <rect x="52" y="136" width="96" height="16" rx="3" fill="#d97706"/>
+      <text x="100" y="147" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">No mask — 94.8%</text>
+    </svg>
+    <div class="sample-label">
+      <span style="color:var(--color-text-primary)">Authorized, no mask</span>
+      <span class="badge badge-amber">Warning</span>
+    </div>
+    <div class="conf">Confidence: 94.8% — mask compliance: failed</div>
+  </div>
+
+  <div class="sample-card">
+    <svg width="100%" viewBox="0 0 200 180" role="img" aria-label="Unknown intruder without a mask — red bounding box with alert">
+      <title>Intruder detected, no mask</title>
+      <rect width="200" height="180" fill="#1a0a0a"/>
+      <ellipse cx="100" cy="72" rx="26" ry="32" fill="#e8a882"/>
+      <rect x="74" y="88" width="52" height="46" rx="4" fill="#d89862"/>
+      <ellipse cx="88" cy="78" rx="6" ry="7" fill="#c88852"/>
+      <ellipse cx="112" cy="78" rx="6" ry="7" fill="#c88852"/>
+      <ellipse cx="100" cy="89" rx="9" ry="5" fill="#d09070"/>
+      <path d="M90 97 Q100 104 110 97" fill="none" stroke="#8b5a30" stroke-width="1.5"/>
+      <rect x="74" y="44" width="52" height="18" rx="9" fill="#1a0a00"/>
+      <rect x="72" y="52" width="6" height="22" rx="3" fill="#e8a882"/>
+      <rect x="122" y="52" width="6" height="22" rx="3" fill="#e8a882"/>
+      <rect x="54" y="36" width="92" height="98" rx="6" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+      <rect x="54" y="36" width="92" height="18" rx="3" fill="#ef4444"/>
+      <text x="100" y="49" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif" font-weight="500">Unknown — Intruder</text>
+      <rect x="54" y="134" width="92" height="16" rx="3" fill="#dc2626"/>
+      <text x="100" y="145" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">No mask — 96.1%</text>
+      <circle cx="174" cy="20" r="10" fill="#ef4444"/>
+      <text x="174" y="24" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif" font-weight="500">!</text>
+    </svg>
+    <div class="sample-label">
+      <span style="color:var(--color-text-primary)">Intruder — no mask</span>
+      <span class="badge badge-red">Alert</span>
+    </div>
+    <div class="conf">Confidence: 96.1% — screenshot saved</div>
+  </div>
+
+  <div class="sample-card">
+    <svg width="100%" viewBox="0 0 200 180" role="img" aria-label="Two people in frame — one authorized with mask, one intruder without mask">
+      <title>Multi-person frame — authorized and intruder</title>
+      <rect width="200" height="180" fill="#0d1520"/>
+      <ellipse cx="58" cy="68" rx="22" ry="26" fill="#d4956a"/>
+      <rect x="36" y="84" width="44" height="42" rx="4" fill="#c4855a"/>
+      <rect x="34" y="90" width="48" height="28" rx="5" fill="#1d4ed8" opacity="0.9"/>
+      <ellipse cx="50" cy="76" rx="5" ry="6" fill="#b8763e"/>
+      <ellipse cx="66" cy="76" rx="5" ry="6" fill="#b8763e"/>
+      <rect x="36" y="46" width="44" height="16" rx="8" fill="#2a1005"/>
+      <rect x="34" y="52" width="5" height="20" rx="2.5" fill="#d4956a"/>
+      <rect x="80" y="52" width="5" height="20" rx="2.5" fill="#d4956a"/>
+      <rect x="20" y="34" width="76" height="88" rx="5" fill="none" stroke="#22c55e" stroke-width="2"/>
+      <rect x="20" y="34" width="76" height="15" rx="3" fill="#22c55e"/>
+      <text x="58" y="45" text-anchor="middle" font-size="8" fill="#fff" font-family="sans-serif" font-weight="500">Harish — Auth</text>
+      <rect x="20" y="122" width="76" height="13" rx="2" fill="#16a34a"/>
+      <text x="58" y="132" text-anchor="middle" font-size="8" fill="#fff" font-family="sans-serif">Mask 97%</text>
+      <ellipse cx="148" cy="68" rx="22" ry="26" fill="#c8a070"/>
+      <rect x="126" y="84" width="44" height="42" rx="4" fill="#b89060"/>
+      <ellipse cx="140" cy="76" rx="5" ry="6" fill="#a87040"/>
+      <ellipse cx="156" cy="76" rx="5" ry="6" fill="#a87040"/>
+      <path d="M138 86 Q148 93 158 86" fill="none" stroke="#7a4010" stroke-width="1.5"/>
+      <rect x="126" y="46" width="44" height="16" rx="8" fill="#120500"/>
+      <rect x="124" y="52" width="5" height="20" rx="2.5" fill="#c8a070"/>
+      <rect x="170" y="52" width="5" height="20" rx="2.5" fill="#c8a070"/>
+      <rect x="110" y="34" width="76" height="88" rx="5" fill="none" stroke="#ef4444" stroke-width="2"/>
+      <rect x="110" y="34" width="76" height="15" rx="3" fill="#ef4444"/>
+      <text x="148" y="45" text-anchor="middle" font-size="8" fill="#fff" font-family="sans-serif" font-weight="500">Unknown — Intruder</text>
+      <rect x="110" y="122" width="76" height="13" rx="2" fill="#dc2626"/>
+      <text x="148" y="132" text-anchor="middle" font-size="8" fill="#fff" font-family="sans-serif">No mask 95%</text>
+      <circle cx="180" cy="16" r="9" fill="#ef4444"/>
+      <text x="180" y="20" text-anchor="middle" font-size="10" fill="#fff" font-family="sans-serif" font-weight="500">!</text>
+    </svg>
+    <div class="sample-label">
+      <span style="color:var(--color-text-primary)">Multi-person frame</span>
+      <span class="badge badge-red">Alert</span>
+    </div>
+    <div class="conf">2 faces detected — 1 intruder flagged</div>
+  </div>
+
+  <div class="sample-card">
+    <svg width="100%" viewBox="0 0 200 180" role="img" aria-label="Intruder wearing a mask — masked intruder edge case">
+      <title>Masked intruder — edge case</title>
+      <rect width="200" height="180" fill="#0a1a12"/>
+      <ellipse cx="100" cy="70" rx="28" ry="34" fill="#b87850"/>
+      <rect x="72" y="86" width="56" height="48" rx="4" fill="#a86840"/>
+      <rect x="68" y="90" width="64" height="36" rx="6" fill="#374151" opacity="0.95"/>
+      <ellipse cx="86" cy="76" rx="6" ry="7" fill="#985828"/>
+      <ellipse cx="114" cy="76" rx="6" ry="7" fill="#985828"/>
+      <rect x="72" y="44" width="56" height="20" rx="10" fill="#050a05"/>
+      <rect x="70" y="52" width="6" height="24" rx="3" fill="#b87850"/>
+      <rect x="124" y="52" width="6" height="24" rx="3" fill="#b87850"/>
+      <rect x="54" y="36" width="92" height="100" rx="6" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6 3"/>
+      <rect x="54" y="36" width="92" height="18" rx="3" fill="#ef4444"/>
+      <text x="100" y="49" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif" font-weight="500">Unknown — Intruder</text>
+      <rect x="54" y="136" width="92" height="16" rx="3" fill="#16a34a"/>
+      <text x="100" y="147" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">Mask — 91.4%</text>
+      <circle cx="174" cy="20" r="10" fill="#ef4444"/>
+      <text x="174" y="24" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif" font-weight="500">!</text>
+    </svg>
+    <div class="sample-label">
+      <span style="color:var(--color-text-primary)">Masked intruder</span>
+      <span class="badge badge-red">Alert</span>
+    </div>
+    <div class="conf">Mask worn — but identity unknown</div>
+  </div>
+
+  <div class="sample-card">
+    <svg width="100%" viewBox="0 0 200 180" role="img" aria-label="No face detected — empty frame or out of range">
+      <title>No face detected in frame</title>
+      <rect width="200" height="180" fill="#080d18"/>
+      <rect x="60" y="50" width="80" height="80" rx="8" fill="none" stroke="#374151" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <line x1="60" y1="50" x2="140" y2="130" stroke="#374151" stroke-width="0.8" stroke-dasharray="4 4"/>
+      <line x1="140" y1="50" x2="60" y2="130" stroke="#374151" stroke-width="0.8" stroke-dasharray="4 4"/>
+      <text x="100" y="158" text-anchor="middle" font-size="10" fill="#4b5563" font-family="sans-serif">No face detected</text>
+      <rect x="30" y="10" width="140" height="15" rx="3" fill="#1e293b"/>
+      <text x="100" y="21" text-anchor="middle" font-size="8" fill="#64748b" font-family="sans-serif">Scanning for faces...</text>
+      <circle cx="20" cy="17" r="4" fill="#22c55e" opacity="0.8"/>
+      <rect x="30" y="155" width="140" height="15" rx="3" fill="#1e293b"/>
+      <text x="100" y="166" text-anchor="middle" font-size="8" fill="#64748b" font-family="sans-serif">Frame: 00:00:03 — 30 fps</text>
+    </svg>
+    <div class="sample-label">
+      <span style="color:var(--color-text-primary)">No face in frame</span>
+      <span class="badge badge-blue">Standby</span>
+    </div>
+    <div class="conf">System live — awaiting face detection</div>
+  </div>
+
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:14px;padding:0 0 .5rem;font-size:12px;color:var(--color-text-secondary)">
+  <span style="display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:22px;height:3px;background:#22c55e;border-radius:2px"></span>Authorized</span>
+  <span style="display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:22px;height:3px;background:#f59e0b;border-radius:2px"></span>No mask warning</span>
+  <span style="display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:22px;height:3px;background:#ef4444;border-radius:2px"></span>Intruder alert</span>
+  <span style="display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:22px;height:3px;background:#374151;border-radius:2px;border:1px dashed #6b7280"></span>Standby / no detection</span>
+</div>

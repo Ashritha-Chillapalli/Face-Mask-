@@ -1,0 +1,96 @@
+
+<style>
+.cm-wrap { display: flex; flex-direction: column; align-items: center; margin: 0 0 2rem; }
+.cm-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 10px; }
+.cm-grid { display: grid; grid-template-columns: 28px 1fr; grid-template-rows: 28px 1fr; gap: 4px; }
+.cm-ylab { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 12px; color: var(--color-text-secondary); text-align: center; grid-row: 2; grid-column: 1; display: flex; align-items: center; justify-content: center; }
+.cm-xlab { font-size: 12px; color: var(--color-text-secondary); text-align: center; grid-row: 1; grid-column: 2; display: flex; align-items: center; justify-content: center; letter-spacing: .02em; }
+.cm-table { grid-row: 2; grid-column: 2; border-collapse: collapse; }
+.cm-table td { width: 90px; height: 72px; text-align: center; vertical-align: middle; border: 2px solid var(--color-background-primary); border-radius: 4px; }
+.cm-val { font-size: 22px; font-weight: 500; display: block; line-height: 1.2; }
+.cm-pct { font-size: 11px; display: block; opacity: .8; margin-top: 2px; }
+.cm-row-labels { display: flex; flex-direction: column; }
+.cm-hdr { display: flex; font-size: 11px; color: var(--color-text-secondary); margin-bottom: 2px; }
+.cm-row-hdr { font-size: 11px; color: var(--color-text-secondary); display: flex; flex-direction: column; justify-content: space-around; padding-right: 4px; text-align: right; }
+.met-row { display: flex; gap: 8px; margin-top: 10px; }
+.met { background: var(--color-background-secondary); border-radius: 6px; padding: 6px 12px; text-align: center; min-width: 72px; }
+.met-label { font-size: 11px; color: var(--color-text-secondary); }
+.met-val { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+.models-row { display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; padding: 1rem 0; }
+</style>
+
+<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Confusion matrices for Custom CNN, MobileNetV2, and ResNet50 face-mask classifiers</h2>
+
+<div class="models-row" id="three-models"></div>
+
+<script>
+const models = [
+  {
+    name: "Custom CNN",
+    tp: 680, fp: 65, fn: 57, tn: 708,
+    acc: "92.0%", prec: "91.3%", rec: "92.3%", f1: "91.8%"
+  },
+  {
+    name: "MobileNetV2",
+    tp: 718, fp: 27, fn: 22, tn: 743,
+    acc: "97.0%", prec: "96.4%", rec: "97.0%", f1: "96.7%"
+  },
+  {
+    name: "ResNet50",
+    tp: 695, fp: 50, fn: 40, tn: 725,
+    acc: "94.7%", prec: "93.3%", rec: "94.6%", f1: "93.9%"
+  }
+];
+
+function makeMatrix(m) {
+  const total = m.tp + m.fp + m.fn + m.tn;
+  const cells = [
+    { v: m.tp, pct: ((m.tp/total)*100).toFixed(1)+'%', bg: '#0C447C', textColor: '#E6F1FB' },
+    { v: m.fp, pct: ((m.fp/total)*100).toFixed(1)+'%', bg: '#F09595', textColor: '#791F1F' },
+    { v: m.fn, pct: ((m.fn/total)*100).toFixed(1)+'%', bg: '#F09595', textColor: '#791F1F' },
+    { v: m.tn, pct: ((m.tn/total)*100).toFixed(1)+'%', bg: '#0C447C', textColor: '#E6F1FB' }
+  ];
+
+  return `
+  <div class="cm-wrap">
+    <div class="cm-title">${m.name}</div>
+    <div style="display:flex;align-items:center;gap:4px">
+      <div class="cm-ylab">Actual</div>
+      <div>
+        <div style="display:flex;font-size:11px;color:var(--color-text-secondary);margin-left:4px;margin-bottom:4px">
+          <div style="text-align:center;width:90px">Predicted mask</div>
+          <div style="text-align:center;width:90px">Predicted no mask</div>
+        </div>
+        <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:2px;margin-left:4px">↑ Predicted label</div>
+        <div style="display:flex;align-items:stretch;gap:0">
+          <div style="display:flex;flex-direction:column;justify-content:space-around;font-size:11px;color:var(--color-text-secondary);text-align:right;padding-right:6px;min-width:54px">
+            <div>With mask</div>
+            <div>No mask</div>
+          </div>
+          <table class="cm-table">
+            <tr>
+              ${cells.slice(0,2).map(c=>`<td style="background:${c.bg};border-radius:4px"><span class="cm-val" style="color:${c.textColor}">${c.v}</span><span class="cm-pct" style="color:${c.textColor}">${c.pct}</span></td>`).join('')}
+            </tr>
+            <tr>
+              ${cells.slice(2,4).map(c=>`<td style="background:${c.bg};border-radius:4px"><span class="cm-val" style="color:${c.textColor}">${c.v}</span><span class="cm-pct" style="color:${c.textColor}">${c.pct}</span></td>`).join('')}
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="met-row">
+      <div class="met"><div class="met-label">Accuracy</div><div class="met-val">${m.acc}</div></div>
+      <div class="met"><div class="met-label">Precision</div><div class="met-val">${m.prec}</div></div>
+      <div class="met"><div class="met-label">Recall</div><div class="met-val">${m.rec}</div></div>
+      <div class="met"><div class="met-label">F1</div><div class="met-val">${m.f1}</div></div>
+    </div>
+  </div>`;
+}
+
+document.getElementById('three-models').innerHTML = models.map(makeMatrix).join('');
+</script>
+
+<div style="display:flex;gap:16px;justify-content:center;margin:8px 0 1rem;font-size:12px;color:var(--color-text-secondary)">
+  <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:2px;background:#0C447C;display:inline-block"></span>Correct (TP / TN)</span>
+  <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:2px;background:#F09595;display:inline-block"></span>Error (FP / FN)</span>
+</div>
